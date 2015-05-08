@@ -223,17 +223,21 @@ class DBV
         $this->_getAdapter()->query("SET GLOBAL general_log = 'OFF'");
         $messages[] = 'Logging Stopped, loading changes...';        
         $database = $this->_getAdapter()->getSchema();
-        
+        $today = date_format(new DateTime(),'YmdHi' );
+        mkdir(DBV_REVISIONS_PATH . '/' . $today);
         foreach ($database as $table) {
             $record = $this->_getAdapter()->query("SELECT * FROM mysql.general_log where argument like 'update ". $table ."%'");
             $result = $record->execute();
             $item = $record->fetch(PDO::FETCH_ASSOC);
             if ($item == true) {
                 $messages[] = 'Creating sql for ' . $table . ' - ' . $item['argument'];
+                $sqlFile = fopen(DBV_REVISIONS_PATH . '/' . $today . DIRECTORY_SEPARATOR . $table . '.sql', 'w');
+                fwrite($sqlFile, $item['argument']);
+                fclose($sqlFile);
             }
         }
         
-        $this->_getAdapter()->query('truncate MySQL.general_log;');
+        // $this->_getAdapter()->query('truncate MySQL.general_log;');
     
         $return['messages']['success'] = $messages;
         return $this->_json($return);
