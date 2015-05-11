@@ -1,0 +1,1 @@
+DELETE FROM spam_reports WHERE job_id  = 5

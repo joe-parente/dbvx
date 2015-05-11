@@ -1,0 +1,1 @@
+UPDATE settings SET value = "%m-%d-%Y" WHERE name = "date_format"

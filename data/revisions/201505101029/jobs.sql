@@ -1,0 +1,1 @@
+UPDATE jobs SET is_active = 0 WHERE id = 2

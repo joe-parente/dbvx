@@ -1,0 +1,13 @@
+UPDATE jobs SET type_id = 3,
+        										category_id = 6,
+										        title = "Test this",
+										        summary = "If you like to break things... ",
+										        description = "<p>Please join us and try to break our software.&nbsp;</p>",
+										        company = "Joe",
+										        city_id = NULL,
+										        url = "joeparente.com",
+										        apply = "",
+														outside_location = "",
+														poster_email = "joe@joeparente.com",
+														apply_online = "1"
+										        WHERE id = 17

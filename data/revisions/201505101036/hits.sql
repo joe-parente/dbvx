@@ -1,0 +1,1 @@
+DELETE FROM hits WHERE job_id  = 5
